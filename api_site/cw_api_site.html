@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>API Experiments</title>
+</head>
+<body>
+<style type="text/css">
+	body {
+		font-family: "Avenir";
+	}
+</style>
+	<div id="container">Some weird Space Sounds</div>
+
+<script type="text/javascript">
+	// using NASA's weird collection of space sounds
+	var data = {
+         "description":"The Voyager 1 spacecraft has experienced three \"tsunami waves\" in interstellar space. Listen to how these waves cause surrounding ionized matter to ring. More details on this sound can be found here: http://www.nasa.gov/jpl/nasa-voyager-tsunami-wave-still-flies-through-interstellar-space/",
+         "license":"cc-by-nc-sa",
+         "title":"Voyager 1: Three \"Tsunami Waves\" in Interstellar Space",
+         "download_url":"https://api.soundcloud.com/tracks/181835738/download",
+         "duration":18365,
+         "last_modified":"2014/12/16 22:34:23 +0000",
+         "stream_url":"https://api.soundcloud.com/tracks/181835738/stream",
+         "tag_list":"Space",
+         "id":181835738
+      }
+	//at this point i want the description to be displayed
+        document.write(data.description,'</div>');
+
+</script>
+</body>
+</html>
