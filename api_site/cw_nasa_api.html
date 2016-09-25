@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Asteroids</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<style type="text/css">
+		body {
+			background-color: black;
+			width: 50%;
+			color: white;
+			font-family: "Avenir", sans-serif;
+		}
+	</style>
+
+</head>
+<body>
+<h1>An Asteroid a Day Keeps the Doctor Away</h1>
+<div>How Many Asteroids are Hazardous?</div>
+<br>
+<div>(Should display 2)</div>
+<!--<button id="crash" action="https://api.nasa.gov/neo/rest/v1/feed?api_key=WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO" method="get">Check</button>
+
+<input id="key" type="hidden" name="WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO">
+<input type="hidden" name="mode" value="html">
+
+the important stuff -->
+<script type="text/javascript">
+	//$(document).ready(function(data) {
+	$.ajax({
+		url: "https://api.nasa.gov/neo/rest/v1/feed?api_key=WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO",
+		data: "near_earth_objects",
+			//"is_potentially_hazardous_astroid",
+		type: "GET"
+		}).done(function (data) {
+			console.log(data);
+			document.write("<div>" + data.object.near_earth_objects[7] + "</div>");
+
+			//var new Date();
+			Object.keys(nasaData.near_earth_objects[1]); //convert crappy days to keys
+
+			//var lastDate = Object.keys(nasaData.near_earth_objects).pop();
+
+			//appendToDOM(data);
+			//var approachDate = near_eath_objects.2016-09-19.close_approach_data.close_approach_date;
+			//var numHazard = data.elementCount;
+		//	var hazard = data.near_eath_objects[0].2016-09-19[0]is_potentially_hazardous_asteroid;
+
+		//count how many asteroids will hit earth
+		//	function checkTrue(data) {
+		//		var result = 0;
+		//		for (i = 1; data.length >=i; i++) {
+		//			if(data[i].is_potentially_hazardous_asteroid === true) {
+		//				document.write( "<div>" + "You are screwed!" + "</div>");
+		//			} else {
+		//		document.write( "<div>" + "S'all good" + "</div>");
+			//}
+
+		//leave this part alone plz
+		});
+	
+</script>
+</body>
+</html>

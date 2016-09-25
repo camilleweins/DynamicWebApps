@@ -8,10 +8,20 @@
 	body {
 		font-family: "Avenir";
 	}
-</style>
+ </style>
 	<div id="container">Some weird Space Sounds</div>
+   <form action="https://api.nasa.gov/planetary/apod
 
-<script type="text/javascript">
+" method="get">
+      <input type="text" name="q" id="q">
+      <input type="hidden" name="appid" value="WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO">
+      <input type="hidden" name="mode" value="html">
+
+      <input type="submit" value="click me" >
+   </form>
+
+
+<!--- <script type="text/javascript">
 	// using NASA's weird collection of space sounds
 	var data = {
          "description":"The Voyager 1 spacecraft has experienced three \"tsunami waves\" in interstellar space. Listen to how these waves cause surrounding ionized matter to ring. More details on this sound can be found here: http://www.nasa.gov/jpl/nasa-voyager-tsunami-wave-still-flies-through-interstellar-space/",
@@ -27,6 +37,44 @@
 	//at this point i want the description to be displayed
         document.write(data.description,'</div>');
 
+</script> -->
+<script   src="https://code.jquery.com/jquery-3.1.0.slim.min.js"   integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8="   crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function() {
+
+
+//get form and add event listener on submit
+   $('form').on('submit', handleSubmit);
+
+   function handleSubmit(event) {
+      console.log(event);
+      event.preventDefault(); //forcing it to do our doe first
+
+   var formData = {
+      q: $("#").val(), //equivelent to document.getElementById('q').value
+      appid: "WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO",
+      mode: "json"
+    };
+
+    $.ajax({
+      url: "https://api.nasa.gov/planetary/apod",
+      method: "get",
+      data: formData
+    }).done(gotData).fail(handleError)
+   }
+
+   function gotData() {
+      console.log(data);
+   }
+
+   function handleError() {
+      console.log('error', err);
+   }
+
+});
 </script>
+
+
 </body>
 </html>

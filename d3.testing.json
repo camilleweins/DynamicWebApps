@@ -1,0 +1,113 @@
+var nasaData = {"links" : {
+    "next" : "https://api.nasa.gov/neo/rest/v1/feed?start_date=2016-09-27&end_date=2016-10-04&detailed=false&api_key=WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO",
+    "prev" : "https://api.nasa.gov/neo/rest/v1/feed?start_date=2016-09-13&end_date=2016-09-20&detailed=false&api_key=WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO",
+    "self" : "https://api.nasa.gov/neo/rest/v1/feed?start_date=2016-09-20&end_date=2016-09-27&detailed=false&api_key=WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO"
+  },
+  "element_count" : 56,
+  "near_earth_objects" : {
+    "2016-09-20" : [ {
+      "links" : {
+        "self" : "https://api.nasa.gov/neo/rest/v1/neo/3759279?api_key=WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO"
+      },
+      "neo_reference_id" : "3759279",
+      "name" : "(2016 RT19)",
+      "nasa_jpl_url" : "http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=3759279",
+      "absolute_magnitude_h" : 21.713,
+      "estimated_diameter" : {
+        "kilometers" : {
+          "estimated_diameter_min" : 0.1207688627,
+          "estimated_diameter_max" : 0.2700473866
+        },
+        "meters" : {
+          "estimated_diameter_min" : 120.7688627302,
+          "estimated_diameter_max" : 270.0473866301
+        },
+        "miles" : {
+          "estimated_diameter_min" : 0.075042269,
+          "estimated_diameter_max" : 0.1677996147
+        },
+        "feet" : {
+          "estimated_diameter_min" : 396.2233155998,
+          "estimated_diameter_max" : 885.9822679515
+        }
+      },
+      "is_potentially_hazardous_asteroid" : false,
+      "close_approach_data" : [ {
+        "close_approach_date" : "2016-09-20",
+        "epoch_date_close_approach" : 1474354800000,
+        "relative_velocity" : {
+          "kilometers_per_second" : "14.452467434",
+          "kilometers_per_hour" : "52028.8827622373",
+          "miles_per_hour" : "32328.7244030135"
+        },
+        "miss_distance" : {
+          "astronomical" : "0.2194828167",
+          "lunar" : "85.3788146973",
+          "kilometers" : "32834162",
+          "miles" : "20402202"
+        },
+        "orbiting_body" : "Earth"
+      } ]} ]} }
+
+var dateData = Object.keys(nasaData.near_earth_objects[1]);
+
+	dateData.is_potentially_hazardous_asteroid;
+
+var hazardData = dateData.is_potentially_hazardous_asteroid;
+
+console.log(dateData);
+
+//d3 stuff
+//var padding = 2;
+
+//var w = 900;
+//var h = 600;
+
+//scale for x
+//var x = d3.scale.linear()
+				//		.range([padding, w-padding]);
+
+//scale for y
+//var y = d3.scale.linear()
+				//		.range([h-padding, padding]);
+
+var svg = d3.select("body").append("svg")
+	.data(["interpolateTransform", nasaData.absolute_magnitude_h)// data i want to move on a path
+	.attr("width", 900)
+	.attr("height", 600); //width and height of svg canvas
+	.append("g") //append my graph
+	.attr("transform", "translate(240, 250)");
+
+//var path = svg.append("path") //add a path to the svg
+	//.attr("d", d3.svg.ellipse()
+	//.interpolate("cardinal-closed")); //make a circular path
+
+//svg.selectAll(".mydata")
+	.data("mydata")
+	.enter().append("circle")
+	.attr("r", nasaData.absolute_magnitude_h)
+	.attr("transform", function(d) {return "translate(" + d + ")"; });
+
+var circle = svg.append("circle") //the circular path
+	.attr("r", 100);
+	//.attr("r", nasaData.absolute_magnitude_h)
+	//.attr("transform", "translate(" + nasaData.absolute_magnitude_h[0] + ")");
+
+//transition();
+
+//tween transition animation
+//function transition() {
+	circle.transition()
+		.duration(10000) //duration of transformation
+		.attrTween("transform", translateAlong(path.node()))
+		.each("end", transition); }
+
+//make data move on specified path
+//function translateAlong(path) {
+	var l = path.getTotalLength(); //total length of path
+	return function(d, i, a) { 
+		return function (t) {
+			var p = path.getPointAtLength(t * l);
+			return "translate(" + p.x + "," + p.y + ")";
+		};
+	};}
