@@ -19,9 +19,9 @@ app.get('/profile/:name', function(req,res) {
 app.use(express.static(__dirname +  '/public'));
 
 //fill in name from a profile
-//app.get('/profile/:name', function(req, res) {
+app.get('/profile/:name', function(req, res) {
     res.send('<h1>Your name is ' + req.params.name + '</h1>');
-};
+});
 
 //get request
 //if you go anywhere that is not the home page you get an error

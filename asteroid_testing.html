@@ -2370,16 +2370,20 @@ var dateData = Object.keys(nasaData.near_earth_objects);
 
 //create array from dateData and removes last element
 var today = Object.keys(nasaData.near_earth_objects).pop();
-//console.log(today);
+console.log(today);
 
 var todayData = nasaData.near_earth_objects[today];
-//console.log(todayData);
+console.log(todayData);
 
-for (i = 0; i < todayData.length; i++) {
-  var diameter = todayData.absolute_magnitude_h[i];
-}
-console.log(diameter);
+// for (i = 0; i < dateData; i++) {
+//   for (j = 0; j < dateData[i].Object.keys(nasaData.near_earth_objects).pop(); j++) {
+//     for (x = 0; x < dateData[i].Object[j].keys(nasaData.near_earth_objects).pop(); x++) {
+//       var diameter = dateData[i].Object[j].keys(nasaData.near_earth_objects).pop().absolute_magnitude_h;
+//     }
+//   }
+// }
 
+//console.log(diameter);
 
 //  var d = 
   //Things[i]
@@ -2412,10 +2416,11 @@ var svg = d3.select("body").append("svg")
   //})
 
 var circle = svg.append("circle") //the circular path
- // .attr("r", function(todayData[i].absolute_magnitude_h, i) {
+  //.attr("r", function(todayData[i].absolute_magnitude_h, i) {
 //    return i 
 //  });
 
+//this one works
 	.attr("r", todayData[0].absolute_magnitude_h);
 
   //does not like this line
