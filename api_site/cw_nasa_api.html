@@ -4,6 +4,7 @@
 <html>
 <head>
 	<title>Asteroids</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<style type="text/css">
 		body {
@@ -19,14 +20,14 @@
 <h1>An Asteroid a Day Keeps the Doctor Away</h1>
 <div>How Many Asteroids are Hazardous?</div>
 <br>
-<div>(Should display 2)</div>
+<button >Check</button>
 <!--<button id="crash" action="https://api.nasa.gov/neo/rest/v1/feed?api_key=WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO" method="get">Check</button>
 
 <input id="key" type="hidden" name="WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO">
 <input type="hidden" name="mode" value="html">
 
 the important stuff -->
-<script type="text/javascript">
+<!--<script type="text/javascript">
 	//$(document).ready(function(data) {
 	$.ajax({
 		url: "https://api.nasa.gov/neo/rest/v1/feed?api_key=WPzPTu9m5hI1SrfCcPpBIssrdH89VpdeCwf1CMsO",
@@ -58,8 +59,18 @@ the important stuff -->
 			//}
 
 		//leave this part alone plz
-		});
-	
+		});</script> -->
+
+<script type="text/javascript">
+
+	nasaData = 'https://api.nasa.gov/neo/rest/v1/feed/today?detailed=true&api_key=DEMO_KEY';
+	todayData = Object.keys(nasaData.near_earth_objects).pop();
+</script>
+<script type="text/javascript">
+	{{#each todayData}}
+		{{#each todayData.absolute_magnitude_h}}
+		<div>Diameter: {{absolute_magnitude_h}}</div>
+	{{/each}}
 </script>
 </body>
 </html>

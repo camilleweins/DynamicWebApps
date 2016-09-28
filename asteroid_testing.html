@@ -2375,6 +2375,10 @@ console.log(today);
 var todayData = nasaData.near_earth_objects[today];
 console.log(todayData);
 
+for (i = 0; i < todayData.length; i++) {
+   var diameter = todayData[i].absolute_magnitude_h;
+   console.log(todayData[i].absolute_magnitude_h);
+};
 // for (i = 0; i < dateData; i++) {
 //   for (j = 0; j < dateData[i].Object.keys(nasaData.near_earth_objects).pop(); j++) {
 //     for (x = 0; x < dateData[i].Object[j].keys(nasaData.near_earth_objects).pop(); x++) {
@@ -2421,7 +2425,7 @@ var circle = svg.append("circle") //the circular path
 //  });
 
 //this one works
-	.attr("r", todayData[0].absolute_magnitude_h);
+	.attr("r", 'diameter' / 2);
 
   //does not like this line
 	//.attr("transform", "translate(" + nasaData.absolute_magnitude_h[0] + ")");
