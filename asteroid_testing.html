@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    <div></div>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript">
     var nasaData = {};
@@ -41,22 +42,56 @@
 
         for (i = 0; i < todayData.length; i++) {
             var diameter = todayData[i].absolute_magnitude_h;
-               console.log(todayData[i].absolute_magnitude_h);
+            var distance = todayData[i].orbital_data.aphelion_distance;
+            //console.log(distance);
+
+            var orbitStuff = todayData[i].orbital_data;
+            console.log(todayData[i].orbital_data);
+            //console.log(todayData[i].absolute_magnitude_h);
+            var asteroids = d3.select('body') //the circular path
+                .style('fill', 'white')
+                .append('ellipse')
+                //.attr('cx', )
+                .attr('r', diameter*4500000*Math.E^-.46) // invert the values so the smaller h means bigger
+                //.attr('cx', )
+                
+                .selectAll('asteroids')
+                // .data(diameter)
+                .enter().append('asteroids');
         };
+
+        var circle = d3.select('body')
+              .style('stroke', 'white')
+              .append('circle')
+              .attr('r', 500)
+              .enter().append('circle');
+
+            console.log(circle);
     });
 
-    var svg = d3.select("body").append("svg")
+    var originX = 500;
+    var originY = 500;
+
+    //var svg = d3.select('body').append('svg')
         //  .data(["interpolateTransform", dateData.absolute_magnitude_h])// data i want to move on a path
-        //  .attr("width", 900)
-        //  .attr("height", 600) //width and height of svg canvas
-        .append("g") //append my graph
+        //.attr("width", 900)
+        //.attr("height", 600) //width and height of svg canvas
+        //.append('g') //append my graph
         //  .attr("transform", "translate(240, 250)");
-
-    var circle = svg.append("circle") //the circular path
-
+    //var earth = 
+    // var asteroids = d3.select('body') //the circular path
+    //   .append('svg')
+    //   .selectAll('asteroids')
+    //   .data(diameter)
+    //   .enter().append('asteroids');
     //this one works
     //no does not work
-    .attr("r", 50 / 2);
+    //.attr('cy', height/2)
+    //.attr('cx', width/2)
+    //.attr('r', 10);
+
+    // var earth = svg.append('circle')
+    //   .attr()
     </script>
 </body>
 
