@@ -23,14 +23,14 @@ router.post('/kscope', function(req, res, next) {
 			res.status(500);
 			return res.json({
 				status: 'error',
-				message: 'could not create kscope'
+				message: 'could not create kscope',
 				error: err
 			});
 		}
 
 		return res.json({
-			status: 'ok'
-			message: 'created new kscope'
+			status: 'ok',
+			message: 'created new kscope',
 			kscope: data
 		});
 	});

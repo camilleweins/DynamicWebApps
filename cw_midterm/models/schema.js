@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var kSchema = new Schema({
 	imageFileName: String,
-	dateCreated: Date,
+	dateCreated: {type: Date, default: Date.now},
 	speed: Number
 
 });
