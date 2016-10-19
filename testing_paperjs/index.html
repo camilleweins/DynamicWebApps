@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type ="text/javascript" src="js/paper-full.js"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+    var path = new Path.Circle({
+    radius: 90,
+    fillColor: 'white',
+    center: [200,200]
+    });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <title>testing</title>
+    <style type="text/css">
+    body {
+        background-color: black;
+    }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" resize>
+                    <script type="text/paperscript" canvas="myCanvas">
+            var nasaData = {};
+
+            $.ajax({
+                'url': 'https://api.nasa.gov/neo/rest/v1/feed/today?detailed=true&api_key=DEMO_KEY',
+                'method': 'GET',
+                'dataType': 'json'
+            }).done(function(obj) {
+                nasaData = obj; //storing responseJSON as a variable
+                //console.log(nasaData);
+                var dateData = Object.keys(nasaData.near_earth_objects);
+                //console.log(nasaData.near_earth_objects);
+
+                //create array from dateData and removes last element
+                var today = Object.keys(nasaData.near_earth_objects).pop();
+                //console.log(today);
+
+                var todayData = nasaData.near_earth_objects[today];
+                //console.log(todayData);
+
+                for (i = 0; i < todayData.length; i++) {
+                    var diameter = todayData[i].absolute_magnitude_h;
+                    var distance = todayData[i].orbital_data.aphelion_distance;
+                    console.log(diameter);
+
+                    var circles = new Path.Circle({radius: diameter/2, fillColor: "white" });
+                        var symbol = new Symbol(circles);
+                        var position = view.size * Point.random();
+                        var placed = symbol.place(position-distance);
+                };
+                 <!-- for (j = 0; j < diameter.length; j++) {
+                //         var circles = new Path.Circle({radius: diameter[j]/2, fillColor: "white" });
+                //         var symbol = new Symbol(circles);
+                //         var position = view.size * Point.random();
+                //         var placed = symbol.place(position-distance);
+                //        console.log(circles);
+                    
+                      
+                // }; -->
+        });    
+
+
+        </script>  
+    </canvas> 
+<!--             <script type="text/paperscript" canvas="myCanvas">
+            var nasaData = {};
+
+            $.ajax({
+                'url': 'https://api.nasa.gov/neo/rest/v1/feed/today?detailed=true&api_key=DEMO_KEY',
+                'method': 'GET',
+                'dataType': 'json'
+            }).done(function(obj) {
+                nasaData = obj; //storing responseJSON as a variable
+                //console.log(nasaData);
+                var dateData = Object.keys(nasaData.near_earth_objects);
+                //console.log(nasaData.near_earth_objects);
+
+                //create array from dateData and removes last element
+                var today = Object.keys(nasaData.near_earth_objects).pop();
+                //console.log(today);
+
+                var todayData = nasaData.near_earth_objects[today];
+                //console.log(todayData);
+
+                for (i = 0; i < todayData.length; i++) {
+                    var diameter = todayData[i].absolute_magnitude_h;
+                    var distance = todayData[i].orbital_data.aphelion_distance;
+                    console.log(diameter);
+
+                    var circles = new Path.Circle({radius: diameter/2, fillColor: "white" });
+                        var symbol = new Symbol(circles);
+                        var position = view.size * Point.random();
+                        var placed = symbol.place(position-distance);
+                };
+                 <! for (j = 0; j < diameter.length; j++) {
+                //         var circles = new Path.Circle({radius: diameter[j]/2, fillColor: "white" });
+                //         var symbol = new Symbol(circles);
+                //         var position = view.size * Point.random();
+                //         var placed = symbol.place(position-distance);
+                //        console.log(circles);
+                    
+                      
+                // }; -->
+       <!--  });    
+
+
+        </script>    -->
+
+</body>
+
+</html>

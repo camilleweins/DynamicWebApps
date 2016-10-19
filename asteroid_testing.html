@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div></div>
+    
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript">
     var nasaData = {};
@@ -52,25 +52,35 @@
                 .style('fill', 'white')
                 .append('ellipse')
                 //.attr('cx', )
-                .attr('r', diameter*4500000*Math.E^-.46) // invert the values so the smaller h means bigger
+                .attr('r', diameter*4500000*Math.E^-.46/2) // invert the values so the smaller h means bigger
                 //.attr('cx', )
                 
                 .selectAll('asteroids')
                 // .data(diameter)
                 .enter().append('asteroids');
-        };
-
-        var circle = d3.select('body')
+                
+            var circle = d3.select('body')
               .style('stroke', 'white')
               .append('circle')
               .attr('r', 500)
+              .attr('cx', 500)
+              .attr('cy', 500)
               .enter().append('circle');
+        };
 
-            console.log(circle);
-    });
+    //     var circle = d3.select('body')
+    //           .style('stroke', 'white')
+    //           .append('circle')
+    //           .attr('r', 500)
+    //           .attr('cx', 500)
+    //           .attr('cy', 500)
+    //           .enter().append('circle');
 
-    var originX = 500;
-    var originY = 500;
+    //         console.log(circle);
+    // });
+
+    // var originX = 500;
+    // var originY = 500;
 
     //var svg = d3.select('body').append('svg')
         //  .data(["interpolateTransform", dateData.absolute_magnitude_h])// data i want to move on a path
