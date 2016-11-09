@@ -2,9 +2,32 @@
 	<div class="row">
 	  <h1 class="ui header">{{msg}}</h1>
 	  <div>
-	  <form method="post" action="/profile/add">
-	  	<button name="treat" class="ui button" type="submit" class="treat">New Random Treat</button>
-	  </form>
+	  	<button name="treat" class="ui button" type="submit" id="treat">New Random Treat</button>
 	  </div>
 	</div>
+	<script type="text/javascript">
+	var treats = ['a candy corn', 'a caramel apple', 'a lolipop', 'a skittle', 'a kit-kat', 'a gummy worm', ' a jawbreaker', 'gum'];
+		window.onload = function() {
+	$('#treat').on('click', addTreat);
+	function addTreat(e) {
+		
+		var randTreat = Math.floor(Math.random() * treats.length);
+		var treat = treats[randTreat];
+		
+		$.ajax({
+			url:'/profile/add',
+			method: 'post',
+			data: {
+				treat: treat
+			}
+		}).done(onSuccess).fail(onFail);
+	}
+	function onSuccess(data) {
+		console.log(data);
+	}
+	function onFail(err) {
+		console.log(err);
+	}
+};
+	</script>
 </div>

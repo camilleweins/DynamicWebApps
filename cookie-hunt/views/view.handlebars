@@ -1,5 +1,34 @@
 <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h1 class="ui header">{{msg}}</h1>
+    {{#if user}}
+    	<button id="treat-button" class="ui button">Random Treat</button>
+    {{/if}}
   </div>
 </div>
+<script type="text/javascript">
+var treats = ['a candy corn', 'a caramel apple', 'a lolipop', 'a skittle', 'a kit-kat', 'a gummy worm', ' a jawbreaker', 'gum'];
+window.onload = function() {
+	$('#treat-button').on('click', addTreat);
+	function addTreat(e) {
+		
+		var randTreat = Math.floor(Math.random() * treats.length);
+		var treat = treats[randTreat];
+		
+		$.ajax({
+			url:'/treat',
+			method: 'post',
+			data: {
+				treat: treat
+			}
+		}).done(onSuccess).fail(onFail);
+	}
+	function onSuccess(data) {
+		console.log(data);
+	}
+	function onFail(err) {
+		console.log(err);
+	}
+};
+
+</script>

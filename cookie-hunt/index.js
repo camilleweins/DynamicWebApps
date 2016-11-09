@@ -88,47 +88,73 @@ app.get('/', function(req, res) {
 //
 app.get('/profile', function(req, res) {
 	res.render('profile', {
-		msg: 'You have a treat: ' + req.session.treat
+		msg: 'You have a treat: ' + req.user.treats
 	});
 });
 
 app.get('/treat', function(req, res) {
 
-	res.render('treat', {
+	res.render('view', {
 		msg: 'Pick a treat'
 	})
-})
+});
 
 app.post('/treat', function(req, res) {
-	console.log(req.session.treat);
-	//console.log(req.session);
-	// var treat = new Treat ({
-	// 	treat: req.body.treat
-	// });
-	// console.log(res.cookie(req.session.value));
-	//var treat = ['candy corn', 'caramel apple', 'lolipop', 'skittles', 'kit-kat', 'gummy worms', 'jawbreakers', 'gum'];
-	req.session.treat = treat[Math.floor(Math.random() * treat.length)];
-	req.session.flash = {
-		type: 'positive', 
-		header: 'You got a treat (check your profile)',
-		body: 'The treat is ' + req.session.treat
-	};
+	var User = require('./models/user');
+	User.findByIdAndUpdate(req.user._id, {$push: {treats: req.body.treat}}, function(err, user) {
+		if (err) {
+			res.status('500').json({
+				status: 'error'
+			});
+		}
+		return res.json(user.treats);
+	});
 
-	// cookie('treat', 'candy corn', {
-	// 	httpOnly: true,
-	// 	signed: true
-	// });
-	res.redirect('/');
 });
 
 app.post('/profile/add', function(req, res) {
-	req.session.treats = 'red';
-	req.session.flash = {
-		type: 'positive', 
-		header: 'You got a new treat (check your profile)',
-		body: 'The treats are ' + req.session.treats
-	};
+	var User = require('./models/user');
+	User.findByIdAndUpdate(req.user._id, {$push: {treats: req.body.treat}}, function(err, user) {
+		if (err) {
+			res.status('500').json({
+				status: 'error'
+			});
+		}
+		return res.json(user.treats);
+	});
+
 });
+
+// app.post('/treat', function(req, res) {
+// 	console.log(req.session.treat);
+// 	//console.log(req.session);
+// 	// var treat = new Treat ({
+// 	// 	treat: req.body.treat
+// 	// });
+// 	// console.log(res.cookie(req.session.value));
+// 	//var treat = ['candy corn', 'caramel apple', 'lolipop', 'skittles', 'kit-kat', 'gummy worms', 'jawbreakers', 'gum'];
+// 	req.session.treat = treat[Math.floor(Math.random() * treat.length)];
+// 	req.session.flash = {
+// 		type: 'positive', 
+// 		header: 'You got a treat (check your profile)',
+// 		body: 'The treat is ' + req.session.treat
+// 	};
+
+// 	// cookie('treat', 'candy corn', {
+// 	// 	httpOnly: true,
+// 	// 	signed: true
+// 	// });
+// 	res.redirect('/');
+// });
+
+// app.post('/profile/add', function(req, res) {
+// 	req.session.treats = 'red';
+// 	req.session.flash = {
+// 		type: 'positive', 
+// 		header: 'You got a new treat (check your profile)',
+// 		body: 'The treats are ' + req.session.treats
+// 	};
+// });
 
 app.get('/clear', function(req, res) {
 	// res.clearCookie('treat');
