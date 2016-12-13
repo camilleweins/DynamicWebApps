@@ -1,0 +1,33 @@
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.min.js"></script>
+<script type="text/javascript">
+var socket = io();
+var myHue;
+socket.on('update users', function(data) {
+	$('#my-list').html('');
+	for (i = 0; i<data.length; i++) {
+			$('#my-list').append('<li>' + data[i] + '</li>');
+	}
+});
+socket.on('someone moved', function(msg) {
+	fill(msg.myHue, 255, 255);
+	ellipse(msg.mouseX, msg.mouseY, 20, 20);
+});
+
+function setup() {
+	createCanvas(600, 800);
+	background(50);
+}
+
+function mouseMoved() {
+	fill(myHue, 255, 255);
+	ellipse(mouseX, mouseY, 100 ,100);
+	socket.emit('mouse move', {
+		mouseX: mouseX,
+		mouseY: mouseY,
+		hue: myHue
+	});
+}
+
+</script>

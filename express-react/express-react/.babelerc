@@ -1,0 +1,3 @@
+{
+	presets: ['react', 'bable-preset-es2015']
+}

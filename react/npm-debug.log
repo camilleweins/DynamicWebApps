@@ -1,0 +1,80 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'react',
+1 verbose cli   'react-dom' ]
+2 info using npm@3.10.3
+3 info using node@v6.6.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData react
+8 silly fetchPackageMetaData react-dom
+9 silly fetchNamedPackageData react
+10 silly mapToRegistry name react
+11 silly mapToRegistry using default registry
+12 silly mapToRegistry registry https://registry.npmjs.org/
+13 silly mapToRegistry data Result {
+13 silly mapToRegistry   raw: 'react',
+13 silly mapToRegistry   scope: null,
+13 silly mapToRegistry   escapedName: 'react',
+13 silly mapToRegistry   name: 'react',
+13 silly mapToRegistry   rawSpec: '',
+13 silly mapToRegistry   spec: 'latest',
+13 silly mapToRegistry   type: 'tag' }
+14 silly mapToRegistry uri https://registry.npmjs.org/react
+15 silly fetchNamedPackageData react-dom
+16 silly mapToRegistry name react-dom
+17 silly mapToRegistry using default registry
+18 silly mapToRegistry registry https://registry.npmjs.org/
+19 silly mapToRegistry data Result {
+19 silly mapToRegistry   raw: 'react-dom',
+19 silly mapToRegistry   scope: null,
+19 silly mapToRegistry   escapedName: 'react-dom',
+19 silly mapToRegistry   name: 'react-dom',
+19 silly mapToRegistry   rawSpec: '',
+19 silly mapToRegistry   spec: 'latest',
+19 silly mapToRegistry   type: 'tag' }
+20 silly mapToRegistry uri https://registry.npmjs.org/react-dom
+21 verbose get https://registry.npmjs.org/react-dom not expired, no request
+22 verbose get https://registry.npmjs.org/react not expired, no request
+23 silly install normalizeTree
+24 silly loadCurrentTree Finishing
+25 silly loadIdealTree Starting
+26 silly install loadIdealTree
+27 silly cloneCurrentTree Starting
+28 silly install cloneCurrentTreeToIdealTree
+29 silly cloneCurrentTree Finishing
+30 silly loadShrinkwrap Starting
+31 silly install loadShrinkwrap
+32 silly loadShrinkwrap Finishing
+33 silly loadAllDepsIntoIdealTree Starting
+34 silly install loadAllDepsIntoIdealTree
+35 silly rollbackFailedOptional Starting
+36 silly rollbackFailedOptional Finishing
+37 silly runTopLevelLifecycles Starting
+38 silly runTopLevelLifecycles Finishing
+39 silly install printInstalled
+40 verbose stack Error: Refusing to install react as a dependency of itself
+40 verbose stack     at checkSelf (/usr/local/lib/node_modules/npm/lib/install/validate-args.js:53:14)
+40 verbose stack     at Array.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+40 verbose stack     at LOOP (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+40 verbose stack     at chain (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:20:5)
+40 verbose stack     at /usr/local/lib/node_modules/npm/lib/install/validate-args.js:16:5
+40 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:52:35
+40 verbose stack     at Array.forEach (native)
+40 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:52:11
+40 verbose stack     at Array.forEach (native)
+40 verbose stack     at asyncMap (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:51:8)
+41 verbose cwd /Users/camilleweins/Documents/dynamic_web_apps/react
+42 error Darwin 16.1.0
+43 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "--save" "react" "react-dom"
+44 error node v6.6.0
+45 error npm  v3.10.3
+46 error code ENOSELF
+47 error Refusing to install react as a dependency of itself
+48 error If you need help, you may report this error at:
+48 error     <https://github.com/npm/npm/issues>
+49 verbose exit [ 1, true ]
